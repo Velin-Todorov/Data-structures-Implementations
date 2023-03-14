@@ -10,69 +10,58 @@ class Stack:
 	def __init__(self):
 		self.head = Node()
 		self.size = 0
- 
+    
+	def check_if_empty(self):
+		if self.size == 0:
+			return True
+		return False
+
 	def push(self, item):
 		new_node = Node(item)
 		temp = self.head
 
-		if temp is None:
-			new_node.next_el = temp
+		if self.head is None:
 			self.head = new_node
 			print('Stack is empty.')
 			print('Adding item as head')
 			self.size += 1
 			return 
 
-		while temp.next_el is not None:
-			temp = temp.next_el
-
-		temp.next_el = new_node
-		self.size += 1
+		else:
+			new_node.next_el = self.head
+			self.head = new_node
+			self.size += 1
 
 	def print_stack(self):
-		temp = self.head.next_el
+		temp = self.head
 
-		if self.size == 0:
-			print('Cannot pop from empty list')
+		if self.check_if_empty():
+			print('No elements in list')
 			return
-
 
 		while temp is not None:
 			print(temp.value, '-> ', end ='')
 			temp = temp.next_el
-		
-		print('None')
+
 
 	def peek(self):
-		temp = self.head
-
-		if self.size == 0:
+		
+		if self.check_if_empty():
 			return 'No elements in list'
 
-		while temp.next_el is not None:
-			temp = temp.next_el
-
-		print(f'Last element is {temp.value}')
+		print(f'Last element is {self.head.value}')
 
 	def pop(self):
 		temp = self.head
-
-		if self.size == 0:
+		
+		if self.check_if_empty():
 			print('Cannot pop from empty list')
 			return
 
-		if self.size == 1:
-			temp.next_el = None
-			self.size -= 1
-			return 
 
-		temp_next = temp.next_el
-
-		while temp is not None:
-			temp = temp.next_el
-
-			if temp.next_el.next_el is None:
-				break
-
+		self.head = self.head.next_el
 		temp.next_el = None
 		self.size -= 1
+		return temp.value
+
+
