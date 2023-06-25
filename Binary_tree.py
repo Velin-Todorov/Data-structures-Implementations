@@ -47,7 +47,6 @@ class Tree:
         #1. find the deepest rightmost node
         
         stack = []
-        most
 
 
 
