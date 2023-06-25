@@ -7,12 +7,12 @@ class Node:
 
 
 class Tree:
-    def __init__(self, root: Node):
-        self.root = root
+    def __init__(self):
+        self.root = None
     
 
-    #traversal operations
-    def inOrder(self):
+    #traversal operations iterative
+    def inOrder(self, root):
         pass
 
     def preOrder(self):
@@ -25,11 +25,34 @@ class Tree:
         pass
 
     #insertions
-    def insert(self):
-        pass
+    def insert(self, node: Node, root):
 
-    def delete(self):
-        pass
+        if root.key > node.key:
+            if root.left is not None:
+                self.insert(node, root.left)
+            
+            else:
+                root.left = node
+                return
+        
+        elif root.key < node.key:
+            if root.right is not None:
+                self.insert(node, root.right)
+            else:
+                root.right = node
+                return
+
+
+    def delete(self, value, root):
+        #1. find the deepest rightmost node
+        
+        stack = []
+        most
+
+
+
+            
+        
 
 
     def search(self):
@@ -46,4 +69,20 @@ class Tree:
     def level_of_node(self):
         pass
 
-    
+
+tree = Tree()
+node = Node(10)
+tree.root = node
+
+node2 = Node(5)
+tree.insert(node2, tree.root)
+
+node3 = Node(11)
+tree.insert(node3, tree.root)
+
+node4 = Node(6)
+tree.insert(node4, tree.root)
+
+tree.inOrder(tree.root)
+
+
